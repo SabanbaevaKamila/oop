@@ -1,0 +1,79 @@
+using System;
+struct BankClient
+{
+    public string Name;
+    public string PassportNumber;
+    public string INN;
+    public decimal CreditSum;
+    public double Percent;
+    public string Date;
+    public int Srok;
+    
+    public void ClientInf()
+    {
+        Console.WriteLine($"ФИО: {Name}");
+        Console.WriteLine($"Паспорт: {PassportNumber}");
+        Console.WriteLine($"ИНН: {INN}");
+        Console.WriteLine($"Сумма кредита: {CreditSum}");
+        Console.WriteLine($"Процент: {Percent}%");
+        Console.WriteLine($"Дата: {Date}");
+        Console.WriteLine($"Срок: {Srok} мес.");
+        Console.WriteLine(new string('-', 40));
+    }
+}
+class Program
+{
+    static void Main() 
+    {
+        BankClient[] clients = new BankClient[3];
+        clients[0] = new BankClient
+        {
+            Name = "Сабанбаева Камила Ильдаровна",
+            PassportNumber = "1234 567890",
+            INN = "1234567890",
+            CreditSum = 1_000_000,
+            Percent = 12.5,
+            Date = "12.05.2025",
+            Srok = 36
+        };
+        
+        clients[1] = new BankClient
+        {
+            Name = "Тарасенко Надежда Александровна",
+            PassportNumber = "1234 567891",
+            INN = "1234567891",
+            CreditSum = 700_000,
+            Percent = 15.5,
+            Date = "21.07.2024",
+            Srok = 24
+        };
+        
+        clients[2] = new BankClient
+        {
+            Name = "Лучевников Лев Львович",
+            PassportNumber = "1234 567892",
+            INN = "1234567892",
+            CreditSum = 500_000_000,
+            Percent = 55.5,
+            Date = "01.01.2023",
+            Srok = 60
+        };
+        
+        bool found = false;
+        
+        Console.WriteLine("Клиенты с кредитом больше 1 000 000:/n");
+        
+        foreach (var client in clients)
+        {
+            if (client.CreditSum > 1_000_000)
+            {
+                client.ClientInf();
+                found = true;
+            }
+        }
+        if (!found)
+        {
+            Console.WriteLine("Нет таких клиентов");
+        }
+    }
+}
