@@ -1,0 +1,64 @@
+using System;
+
+class Massiv
+{
+    public int[] array;
+    public int count;
+
+    public Massiv(int count1)
+    {
+        this.count = count1;
+        array = new int[count];
+    }
+
+    public void FillRandom()
+    {
+        Random rand = new Random();
+        for (int i = 0; i < count; i++)
+        {
+                array[i] = rand.Next(1, 101);
+        }
+    }
+
+    public void Ubyvaniye()
+    {
+        for (int i = 0; i < count - 1; i++)
+        {
+            for (int j = i + 1; j < count; j++)
+            {
+                if (array[i] < array[j])
+                {
+                    int v = array[i];
+                    array[i] = array[j];
+                    array[j] = v;
+                }
+            }
+        }
+    }
+
+    public void PrintArray()
+    {
+        for (int i = 0; i < count; i++)
+        {
+            Console.WriteLine(array[i]);
+        }
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Massiv massiv = new Massiv(6);
+
+        massiv.FillRandom();
+
+        Console.WriteLine("Исходный массив:");
+        massiv.PrintArray();
+
+        massiv.Ubyvaniye();
+
+        Console.WriteLine("\nОтсортированный массив (по убыванию):");
+        massiv.PrintArray();
+    }
+}
